@@ -1,0 +1,39 @@
+# ===================================================================
+# File Konfigurasi Sensitif
+# JANGAN PERNAH UNGGAH FILE INI KE GITHUB!
+# ===================================================================
+.env
+
+
+# ===================================================================
+# File Log yang Dihasilkan oleh Bot
+# File-file ini akan terus berubah dan tidak perlu dilacak.
+# ===================================================================
+*.log
+
+
+# ===================================================================
+# Direktori Cache Python
+# Dibuat secara otomatis oleh Python, berisi file .pyc yang terkompilasi.
+# ===================================================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+
+# ===================================================================
+# File dan Folder Spesifik Editor Kode (Opsional tapi direkomendasikan)
+# Ini akan mengabaikan file pengaturan yang dibuat oleh editor seperti
+# VS Code, PyCharm, dll.
+# ===================================================================
+.vscode/
+.idea/
+
+
+# ===================================================================
+# File Spesifik Sistem Operasi
+# Mengabaikan file sistem yang sering dibuat oleh macOS, Windows.
+# ===================================================================
+.DS_Store
+Thumbs.db
