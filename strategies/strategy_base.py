@@ -10,11 +10,24 @@ from main import mt_lock, order_send_request
 class Strategy:
     # ... (Tempelkan seluruh isi class Strategy di sini) ...
     def __init__(self, symbol, volume):
-        self.symbol = symbol; self.volume = volume
-        with mt_lock: self.info = mt.symbol_info(self.symbol)
-        self.digits = self.info.digits if self.info else 2
-        self.point = self.info.point if self.info else 0.00001
+        self.symbol = symbol
+        self.volume = volume
         self.order_sent = False
+        
+        # Coba dapatkan info dari MT5 jika terhubung, jika tidak gunakan fallback
+        try:
+            from main import get_symbol_info # Coba impor
+            self.info = get_symbol_info(self.symbol)
+        except ImportError:
+            self.info = None # Akan diisi oleh backtester nanti
+
+        if self.info:
+            self.digits = self.info.digits
+            self.point = self.info.point
+        else:
+            # Nilai fallback default jika tidak terhubung ke MT5 (untuk backtest)
+            self.digits = 5 if "JPY" not in symbol.upper() else 3
+            self.point = 0.00001 if "JPY" not in symbol.upper() else 0.001
     
     def check_signal(self, ohlc_df, tick): raise NotImplementedError
     
